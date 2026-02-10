@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Para mi favorita</title>
+    <style>
+        body { background-color: #ffcad4; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: 'Comic Sans MS', cursive; }
+        .sobre { background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 2px solid #ff4d6d; }
+        h1 { color: #ff4d6d; margin-bottom: 10px; }
+        p { font-size: 1.2rem; color: #590d22; }
+        .corazon { color: #ff4d6d; font-size: 50px; }
+    </style>
+</head>
+<body>
+    <div class="sobre">
+        <div class="corazon">❤️</div>
+        <h1 id="titulo">¡Hola!</h1>
+        <p id="mensaje">Tengo una sorpresa para ti...</p>
+        <p>De: <span id="remitente">Tu amor</span></p>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        // Aquí sacamos los nombres de la URL
+        const nombre = params.get('to') || "Amor";
+        const de = params.get('from') || "Alguien que te quiere";
+        
+        document.getElementById('titulo').innerText = "¡Hola, " + nombre + "!";
+        document.getElementById('remitente').innerText = de;
+    </script>
+</body>
+</html>
