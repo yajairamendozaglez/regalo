@@ -14,81 +14,91 @@
             min-height: 100vh; 
             margin: 0; 
             font-family: 'Georgia', serif;
-            overflow-x: hidden;
+            overflow: hidden;
             padding: 20px;
         }
         .carta { 
             background: white; 
-            padding: 50px 40px; 
+            padding: 40px; 
             border-radius: 15px; 
             text-align: center; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
             max-width: 500px;
             border: 1px solid #f8bbd0;
             z-index: 10;
-            position: relative;
         }
-        p { 
-            font-size: 1.25rem; 
-            color: #4a4a4a; 
-            line-height: 1.8; 
-            font-style: italic;
-            margin-bottom: 30px;
+        p { font-size: 1.2rem; color: #4a4a4a; line-height: 1.6; font-style: italic; }
+        .pregunta { font-size: 1.6rem; color: #d81b60; font-weight: bold; margin: 30px 0; }
+        
+        .botones { display: flex; justify-content: center; gap: 20px; margin-top: 20px; position: relative; }
+        
+        button {
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .pregunta {
-            font-size: 1.6rem;
-            color: #d81b60;
-            font-weight: bold;
-            margin: 35px 0;
-        }
-        .te-amo { 
-            font-size: 1.8rem; 
-            color: #ad1457; 
-            margin-top: 25px;
-            letter-spacing: 2px;
-        }
-        .firma { 
-            font-size: 1.1rem; 
-            color: #888; 
-            margin-top: 40px;
-            font-family: 'Arial', sans-serif;
-        }
-        .corazon-bg { 
-            position: absolute; 
-            color: #f48fb1; 
-            animation: flotar 6s linear infinite; 
-            opacity: 0.4; 
-            z-index: 1; 
-        }
-        @keyframes flotar { 
-            from { transform: translateY(100vh) rotate(0deg); } 
-            to { transform: translateY(-10vh) rotate(360deg); } 
-        }
+        #btn-si { background-color: #f06292; color: white; }
+        #btn-no { background-color: #90a4ae; color: white; position: relative; }
+        
+        .firma { font-size: 1rem; color: #888; margin-top: 30px; }
+        .corazon-bg { position: absolute; color: #f48fb1; animation: flotar 6s linear infinite; opacity: 0.4; }
+        @keyframes flotar { from { transform: translateY(100vh); } to { transform: translateY(-10vh); } }
     </style>
 </head>
 <body>
 
-    <div class="carta">
+    <div class="carta" id="contenedor">
         <p>"Por primera vez, admitiré que ya no estoy dispuesto a seguir jugando a enamorarme sin entregarme por completo, como si no supiera que ya te he entregado cada fragmento de mí. Quiero poder amarte con toda mi alma, sin preocuparme por lo que venga después."</p>
         
         <div class="pregunta">¿Quieres ser mi San Valentín?</div>
         
-        <div class="te-amo">❤️ ¡TE AMO! ❤️</div>
+        <div class="botones">
+            <button id="btn-si" onclick="aceptar()">¡SÍ!</button>
+            <button id="btn-no" onmouseover="moverBoton(this)">No</button>
+        </div>
         
         <div class="firma">De: yajaira</div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // Corazones flotantes de fondo
-        for (let i = 0; i < 20; i++) {
+        function moverBoton(btn) {
+            // Hace que el botón "No" se mueva a una posición aleatoria
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = "absolute";
+            btn.style.left = x + "px";
+            btn.style.top = y + "px";
+        }
+
+        function aceptar() {
+            // Lluvia de confeti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            
+            // Cambia el mensaje
+            document.getElementById('contenedor').innerHTML = `
+                <h1 style="color: #d81b60;">¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>
+                <p>Me haces la persona más feliz del mundo.</p>
+                <div style="font-size: 5rem;">❤️</div>
+                <div style="color: #888; margin-top: 20px;">De: yajaira</div>
+            `;
+        }
+
+        // Corazones de fondo
+        for (let i = 0; i < 15; i++) {
             let corazon = document.createElement('div');
             corazon.className = 'corazon-bg';
             corazon.innerHTML = '❤️';
             corazon.style.left = Math.random() * 100 + 'vw';
-            corazon.style.top = (Math.random() * 100 + 100) + 'vh';
-            corazon.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            corazon.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            corazon.style.animationDelay = (Math.random() * 5) + 's';
+            corazon.style.top = Math.random() * 100 + 'vh';
+            corazon.style.animationDuration = (Math.random() * 3 + 3) + 's';
             document.body.appendChild(corazon);
         }
     </script>
