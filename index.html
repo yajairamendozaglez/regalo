@@ -1,84 +1,52 @@
-<!DOCTYPE html>
+<!DOCTYPE <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi amor</title>
     <style>
-        body { 
-            background-color: #ffcad4; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            margin: 0; 
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
-        .sobre { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 30px; 
-            text-align: center; 
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3); 
-            border: 3px solid #ff4d6d;
-            z-index: 10;
-        }
-        h1 { color: #ff4d6d; font-size: 2.5rem; margin-bottom: 10px; }
-        .te-amo { font-size: 3rem; color: #ff4d6d; font-weight: bold; margin: 20px 0; animation: latido 1s infinite; }
-        p { font-size: 1.5rem; color: #590d22; }
-        @keyframes latido {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        /* Corazones flotantes */
-        .corazon-bg {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 20px;
-            animation: flotar 5s linear infinite;
-            opacity: 0.6;
-        }
-        @keyframes flotar {
-            from { transform: translateY(100vh) rotate(0deg); }
-            to { transform: translateY(-10vh) rotate(360deg); }
-        }
+        body { background-color: #ffcad4; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow-x: hidden; }
+        .sobre { background: white; padding: 40px; border-radius: 30px; text-align: center; box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3); border: 3px solid #ff4d6d; z-index: 10; width: 80%; max-width: 400px; }
+        h1 { color: #ff4d6d; font-size: 2rem; }
+        .te-amo { font-size: 2.5rem; color: #ff4d6d; font-weight: bold; margin: 15px 0; animation: latido 1s infinite; }
+        p { font-size: 1.1rem; color: #590d22; line-height: 1.5; }
+        @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .corazon-bg { position: absolute; color: #ff4d6d; animation: flotar 5s linear infinite; opacity: 0.6; z-index: 1; }
+        @keyframes flotar { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
     </style>
 </head>
 <body>
     <div class="sobre">
         <h1 id="titulo">¡Hola!</h1>
         <div class="te-amo">❤️ ¡TE AMO! ❤️</div>
-        <p>Eres lo más especial en mi vida ¿Quieres ser mi san valentin?.</p>
-        <p style="font-size: 1rem;">De: <span id="remitente">Tu amor</span></p>
+        
+        <p>Eres la persona que ilumina mis días.</p>
+        <p>Gracias por cada momento a tu lado, por tus risas y por ser como eres.</p>
+        <p>Eres mi lugar favorito en el mundo. 🌍✨</p>
+        
+        <p style="font-size: 0.9rem; margin-top: 20px;">De: <span id="remitente">Tu amor</span></p>
         
         <audio id="musica" autoplay loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
         </audio>
-        <button onclick="document.getElementById('musica').play()" style="background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">🎵 Haz clic para música</button>
+        <button onclick="document.getElementById('musica').play()" style="background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 15px;">🎵 Toca para la música</button>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
-        const nombre = params.get('to') || "Mi Amor";
-        const de = params.get('from') || "Yo";
-        
-        document.getElementById('titulo').innerText = "¡Hola, " + nombre + "!";
-        document.getElementById('remitente').innerText = de;
+        document.getElementById('titulo').innerText = "¡Hola, " + (params.get('to') || "Amor") + "!";
+        document.getElementById('remitente').innerText = params.get('from') || "Yo";
 
-        // Crear corazones flotantes
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 15; i++) {
             let corazon = document.createElement('div');
             corazon.className = 'corazon-bg';
             corazon.innerHTML = '❤️';
             corazon.style.left = Math.random() * 100 + 'vw';
             corazon.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            corazon.style.fontSize = (Math.random() * 20 + 10) + 'px';
             document.body.appendChild(corazon);
         }
     </script>
 </body>
 </html>
+
 
