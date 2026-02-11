@@ -19,118 +19,78 @@
         }
         .carta { 
             background: white; 
-            padding: 40px; 
+            padding: 50px 40px; 
             border-radius: 15px; 
             text-align: center; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
             max-width: 500px;
             border: 1px solid #f8bbd0;
             z-index: 10;
+            position: relative;
         }
         p { 
-            font-size: 1.2rem; 
+            font-size: 1.25rem; 
             color: #4a4a4a; 
             line-height: 1.8; 
             font-style: italic;
+            margin-bottom: 30px;
         }
         .pregunta {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #d81b60;
             font-weight: bold;
-            margin: 30px 0;
+            margin: 35px 0;
         }
         .te-amo { 
             font-size: 1.8rem; 
             color: #ad1457; 
-            margin-top: 20px;
+            margin-top: 25px;
+            letter-spacing: 2px;
         }
         .firma { 
-            font-size: 1rem; 
+            font-size: 1.1rem; 
             color: #888; 
-            margin-top: 30px;
+            margin-top: 40px;
+            font-family: 'Arial', sans-serif;
         }
         .corazon-bg { 
             position: absolute; 
             color: #f48fb1; 
             animation: flotar 6s linear infinite; 
-            opacity: 0.5; 
+            opacity: 0.4; 
             z-index: 1; 
         }
         @keyframes flotar { 
             from { transform: translateY(100vh) rotate(0deg); } 
             to { transform: translateY(-10vh) rotate(360deg); } 
         }
-        button {
-            background: #f06292;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Arial', sans-serif;
-            transition: 0.3s;
-        }
-        button:hover { background: #d81b60; }
     </style>
 </head>
 <body>
 
     <div class="carta">
-        <p>"Por primera vez, admitiré que ya no estoy dispuesta a seguir jugando a enamorarme sin entregarme por completo, como si no supiera que ya te he entregado cada fragmento de mí. Quiero poder amarte con toda mi alma, sin preocuparme por lo que venga después."</p>
+        <p>"Por primera vez, admitiré que ya no estoy dispuesto a seguir jugando a enamorarme sin entregarme por completo, como si no supiera que ya te he entregado cada fragmento de mí. Quiero poder amarte con toda mi alma, sin preocuparme por lo que venga después."</p>
         
         <div class="pregunta">¿Quieres ser mi San Valentín?</div>
         
         <div class="te-amo">❤️ ¡TE AMO! ❤️</div>
         
         <div class="firma">De: yajaira</div>
-
-        <audio id="musica" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
-        </audio>
-        <br>
-        <button onclick="document.getElementById('musica').play()">🎵 Toca para escuchar la música</button>
     </div>
 
     <script>
         // Corazones flotantes de fondo
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 20; i++) {
             let corazon = document.createElement('div');
             corazon.className = 'corazon-bg';
             corazon.innerHTML = '❤️';
             corazon.style.left = Math.random() * 100 + 'vw';
-            corazon.style.top = Math.random() * 100 + 'vh';
+            corazon.style.top = (Math.random() * 100 + 100) + 'vh';
             corazon.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            corazon.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            corazon.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            corazon.style.animationDelay = (Math.random() * 5) + 's';
             document.body.appendChild(corazon);
         }
     </script>
 </body>
 </html>
-        
-        <p style="font-size: 0.9rem; margin-top: 20px;">De: <span id="remitente">Tu amor</span></p>
-        
-        <audio id="musica" autoplay loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-        </audio>
-        <button onclick="document.getElementById('musica').play()" style="background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 15px;">🎵 Toca para la música</button>
-    </div>
-
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        document.getElementById('titulo').innerText = "¡Hola, " + (params.get('to') || "Amor") + "!";
-        document.getElementById('remitente').innerText = params.get('from') || "Yo";
-
-        for (let i = 0; i < 15; i++) {
-            let corazon = document.createElement('div');
-            corazon.className = 'corazon-bg';
-            corazon.innerHTML = '❤️';
-            corazon.style.left = Math.random() * 100 + 'vw';
-            corazon.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.body.appendChild(corazon);
-        }
-    </script>
-</body>
-</html>
-
-
-
